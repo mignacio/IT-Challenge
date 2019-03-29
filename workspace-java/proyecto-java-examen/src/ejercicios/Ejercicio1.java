@@ -7,7 +7,7 @@ package ejercicios;
  */
 public class Ejercicio1 {
 	
-	  	int count1;
+	  	static int count1;
 	    static int count2;  
 
 	    public Ejercicio1() {
