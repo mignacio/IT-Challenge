@@ -1,41 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<!-- <meta http-equiv="refresh" content="100"> -->
-	<!-- <link rel="stylesheet" type="text/css" href="../css/style.css"> -->
+	<meta charset="UTF-8">
+	<meta http-equiv="refresh" content="100">
+	<link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body>
-	<A HREF = ../index.php>Menu</A><br>
-	<style>
-		#tablaDatos {
-			font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-			border-collapse: collapse;
-			width: 100%;
-		}
-
-		#tablaDatos td, #tablaDatos th {
-			border: 1px solid #ddd;
-			padding: 8px;
-		}
-
-		#tablaDatos tr:nth-child(even){background-color: #f2f2f2;}
-
-		#tablaDatos tr:hover {background-color: #ddd;}
-
-		#tablaDatos th {
-			padding-top: 12px;
-			padding-bottom: 12px;
-			text-align: left;
-			background-color: #00A8A9;
-			color: white;
-		}
-	</style>
-
 	<div id="cards" class="cards">
+		<a href="../index.php">Menú</a><br>
 		<?php
 			$tableName = 'curso';
 			$primerColumna = 'identificador';
-			include('defines.php');
+
+			include("../defines.php");
 			$sql = "SHOW COLUMNS FROM $tableName";
 			$result = mysqli_query($mysqli, $sql);
 
@@ -43,12 +20,11 @@
 				$fields[] = $x['Field'];
 			}
 
-			echo "<TABLE id='tablaDatos'>";
-			echo "<TR>";
+			echo "<table id='tablaDatos'><tr>";
 			foreach($fields as $f){
-				echo "<TH>".$f."</TH>";
+				echo "<th>$f</th>";
 			}
-			echo "</TR>";
+			echo "</tr>";
 
 			$sql = "SELECT * FROM $tableName ORDER BY $primerColumna DESC";
 
@@ -56,18 +32,18 @@
 			{
 				while ($row=mysqli_fetch_row($result))
 				{
-					echo "<TR>";
+					echo "<tr>";
 					foreach($row as $key => $value){
-						echo "<TD>".$value."</TD>";
+						echo "<td>$value</td>";
 					}
-					echo "</TR>";
+					echo "</tr>";
 				}
-				echo "</TABLE>";
 				// Free result set
 				mysqli_free_result($result);
 			}else{
 				echo $result->$error;
 			}
+			echo "</table>";
 			mysqli_close($mysqli);
 		?>
 	</div>

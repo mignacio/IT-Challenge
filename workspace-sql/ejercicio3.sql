@@ -3,7 +3,7 @@
 */
 CREATE TABLE docente (
     identificador  integer PRIMARY KEY NOT NULL,
-    idpersona	    integer REFERENCES persona (identificador) UNIQUE
+    idpersona	    integer UNIQUE REFERENCES persona (identificador)
 );
 
 ALTER TABLE curso ADD iddocente INTEGER;

@@ -12,7 +12,7 @@
 			$tableName = 'alumno';
 			$primerColumna = 'identificador';
 
-			require(".:/app/.heroku/php/lib/php/defines.php");
+			include("../defines.php");
 			$sql = "SHOW COLUMNS FROM $tableName";
 			$result = mysqli_query($mysqli, $sql);
 
