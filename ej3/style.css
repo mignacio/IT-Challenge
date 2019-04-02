@@ -1,0 +1,24 @@
+
+
+	#tablaDatos {
+		font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+		border-collapse: collapse;
+		width: 100%;
+	}
+
+	#tablaDatos td, #tablaDatos th {
+		border: 1px solid #ddd;
+		padding: 8px;
+	}
+
+	#tablaDatos tr:nth-child(even){background-color: #f2f2f2;}
+
+	#tablaDatos tr:hover {background-color: #ddd;}
+
+	#tablaDatos th {
+		padding-top: 12px;
+		padding-bottom: 12px;
+		text-align: left;
+		background-color: #00A8A9;
+		color: white;
+	}

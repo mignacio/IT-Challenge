@@ -1,11 +1,14 @@
---- ESTRUCTURAS DE DATOS PARA MODELO SIMPLIFICADO DE "Alumno inscriptos en varios cursos de una carrera" ----
 
-drop table inscripciones_curso;
-drop table inscripciones_carrera;
-drop table curso;
-drop table carrera;
-drop table alumno;
-drop table persona;
+#--- ESTRUCTURAS DE DATOS PARA MODELO SIMPLIFICADO DE "Alumno inscriptos en varios cursos de una carrera" ----
+
+
+drop TABLE IF exists inscripciones_curso;
+drop table IF exists inscripciones_carrera;
+drop table IF exists curso;
+drop TABLE IF exists carrera;
+drop table IF exists alumno;
+drop table IF exists docente;
+drop table IF exists persona;
 
 
 CREATE TABLE persona (
@@ -20,10 +23,17 @@ CREATE TABLE persona (
 
 CREATE TABLE alumno (
     identificador  integer PRIMARY KEY NOT NULL,
-    idpersona	    integer REFERENCES persona (identificador) UNIQUE,
+    idpersona	    integer UNIQUE REFERENCES persona (identificador),
     legajo 	    integer NOT NULL
 );
 
+/*
+* Agregado para EJ - 3
+*/
+CREATE TABLE docente (
+    identificador  integer PRIMARY KEY NOT NULL,
+    idpersona	    integer UNIQUE REFERENCES persona (identificador)
+);
 
    
 CREATE TABLE carrera (
@@ -42,24 +52,25 @@ CREATE TABLE curso (
     nombre       varchar(40) NOT NULL,
     descripcion      varchar(250),
     cupomaximo 	smallint NOT NULL,
-    anio			smallint NOT NULL    
+    anio			smallint NOT NULL   
 );
 
 
 CREATE TABLE inscripciones_carrera(
-    idalumno 		integer REFERENCES alumno (identificador) NOT NULL,
-    idcarrera		integer REFERENCES carrera (identificador) NOT NULL,
+    idalumno 		integer NOT NULL REFERENCES alumno (identificador),
+    idcarrera		integer NOT NULL REFERENCES carrera (identificador),
     fechainscripcion	date NOT NULL
 );
 
 CREATE TABLE inscripciones_curso(
-    idalumno 		integer REFERENCES alumno (identificador) NOT NULL,
-    idcurso 		integer REFERENCES curso (identificador) NOT NULL,
+    idalumno 		integer NOT NULL REFERENCES alumno (identificador),
+    idcurso 		integer NOT NULL REFERENCES curso (identificador),
     fechainscripcion	date NOT NULL
 );
 
 
------ Insert de datos iniciales persona
+#----- Insert de datos iniciales persona
+
    INSERT INTO persona VALUES
     (1,'DNI', 31565839, 'Florencia', 'Maneiro', '1985-06-28');
    INSERT INTO persona VALUES
@@ -71,7 +82,9 @@ CREATE TABLE inscripciones_curso(
     INSERT INTO persona VALUES
     (5,'DNI', 24112872, 'Leandro', 'Garcia', '1988-01-03');
     
------ Insert de datos iniciales alumno
+
+#----- Insert de datos iniciales alumno
+
    INSERT INTO alumno VALUES
     (1,3, 98734);
    INSERT INTO alumno VALUES
@@ -83,16 +96,17 @@ CREATE TABLE inscripciones_curso(
    INSERT INTO alumno VALUES
     (5,2, 11009);
     
------ Insert de datos iniciales carrera
+#----- Insert de datos iniciales carrera
+
 
    INSERT INTO carrera VALUES
-    (1,'Ingenieria en sistema de información', 'Carrera a fines a programación y desarrollo de software en general','1960-01-01');
+    (1,'Ingenieria en sistema de información', 'Carrera a fines a programación y desarrollo de software en general','1960-01-01', NULL);
 
    INSERT INTO carrera VALUES
-    (2,'Ingenieria civil', 'Carrera a fines a construcción, planificación y desarrollo de obras de desarrollo urbano','1980-01-01');
+    (2,'Ingenieria civil', 'Carrera a fines a construcción, planificación y desarrollo de obras de desarrollo urbano','1980-01-01', NULL);
 
 
------ Insert de datos iniciales curso
+#----- Insert de datos iniciales curso
 
 
    INSERT INTO curso VALUES
@@ -114,7 +128,7 @@ CREATE TABLE inscripciones_curso(
     (6,2,'Dibujo', 'Curso sobre dibujo de planos', 10,2018);
     
 
------ Insert de datos iniciales inscripciones
+#----- Insert de datos iniciales inscripciones
 
 INSERT INTO inscripciones_carrera VALUES
 (1,1,'2000-01-01');
