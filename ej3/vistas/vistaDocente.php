@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="refresh" content="100">
-	<link rel="stylesheet" type="text/css" href="../style.css">
-</head>
+<?php
+	include('../head.php');
+?>
 <body>
 	<div id="cards" class="cards">
 		<a href="../index.php">Menú</a><br>
