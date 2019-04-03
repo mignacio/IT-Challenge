@@ -24,7 +24,7 @@ CREATE TABLE persona (
 CREATE TABLE alumno (
     identificador  integer PRIMARY KEY NOT NULL,
     idpersona	    integer UNIQUE REFERENCES persona (identificador),
-    legajo 	    integer NOT NULL
+    legajo 	    integer  UNIQUE NOT NULL
 );
 
 /*
@@ -46,8 +46,7 @@ CREATE TABLE carrera (
 
 CREATE TABLE curso (
     identificador  integer PRIMARY KEY NOT NULL,
-    idcarrera 		integer REFERENCES carrera (identificador),
-    iddocente integer REFERENCES docente (identificador),
+    idcarrera 		integer REFERENCES carrera (identificador),    
     nombre       varchar(40) NOT NULL,
     descripcion      varchar(250),
     cupomaximo 	smallint NOT NULL,
@@ -65,6 +64,23 @@ CREATE TABLE inscripciones_curso(
     idalumno 		integer NOT NULL REFERENCES alumno (identificador),
     idcurso 		integer NOT NULL REFERENCES curso (identificador),
     fechainscripcion	date NOT NULL
+);
+
+/*
+* Agregado para EJ - 3
+*/
+
+ALTER TABLE curso ADD iddocente INTEGER;
+ALTER TABLE curso ADD FOREIGN KEY (iddocente) REFERENCES docente (identificador);
+
+
+CREATE TABLE historia_academica(
+    idalumno integer REFERENCES alumno (identificador),
+    idcarrera integer REFERENCES carrera (identificador),
+    idcurso integer REFERENCES curso (identificador),
+    estado ENUM('libre', 'en curso', 'aprobado'),
+    nota smallint,
+    fecha date
 );
 
 
@@ -96,7 +112,9 @@ CREATE TABLE inscripciones_curso(
     (4,5, 36299);
    INSERT INTO alumno VALUES
     (5,2, 11009);
+    
 #----- Insert de datos iniciales de docente
+
     INSERT INTO docente VALUES
     (1,6);
 
@@ -182,4 +200,25 @@ INSERT INTO inscripciones_curso VALUES
 (2,5,'2011-01-01');
 INSERT INTO inscripciones_curso VALUES
 (2,6,'2011-01-01');
+
+/**
+*
+*/
+INSERT INTO historia_academica VALUES
+(4, 1, 1, 'aprobado', 6, CURRENT_DATE);
+
+INSERT INTO historia_academica VALUES
+(4, 1, 1, 'aprobado', 6, CURRENT_DATE);
+
+INSERT INTO historia_academica VALUES
+(4, 1, 1, 'aprobado', 7, CURRENT_DATE);
+
+INSERT INTO historia_academica VALUES
+(4, 1, 1, 'aprobado', 9, CURRENT_DATE);
+
+INSERT INTO historia_academica VALUES
+(4, 5, 2, 'aprobado', 6, CURRENT_DATE);
+
+INSERT INTO historia_academica VALUES
+(4, 5, 2, 'aprobado', 10, CURRENT_DATE);
 

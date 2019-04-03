@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>Ingresar Alumno</title>
-</head>
+<?php
+	include __DIR__ . '/../head.php';
+?>
 <body>
 
 <div class="login-page">
@@ -35,7 +30,8 @@
 		  if ($result=mysqli_query($mysqli,$sql))
 			{
 				if(mysqli_num_rows($result)===0){
-					echo "No se encontró al alumno con el legajo: ".$legajo;
+					echo "No se encontró al alumno con el legajo: ".$legajo."<br>";
+					echo 'Desea <a href="ingresar_alumno.php">inscribirse?</a>';
 					mysqli_free_result($result);
 				  mysqli_close($mysqli);
 					die;

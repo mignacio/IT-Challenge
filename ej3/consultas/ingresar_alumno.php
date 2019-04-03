@@ -7,6 +7,7 @@
   <div class="form">
 		<a href="../index.php">Menú</a><br><br>
     <form class="login-form" name="form1" method="POST" action="">
+
       <input type="text" placeholder="idpersona" name="idpersona" maxlength="20"/><br><br>
 
 			<input type="text" placeholder="idalumno" name="idalumno" maxlength="20"/><br><br>
@@ -48,52 +49,40 @@
 			$legajo = $_POST['legajo'];
 
 			$sql = "SELECT * FROM persona WHERE identificador = $idpersona";
-			if ($result=mysqli_query($mysqli,$sql))
-			{
-				if(mysqli_num_rows($result)!==0){
-					echo "La persona con el identificador " . $idpersona . " ya existe. Intentando ingresar solo alumno.";
-					mysqli_free_result($result);
+			if($result=mysqli_query($mysqli, $sql)){
+				if(mysqli_num_rows($result) != 0){
+					echo "La persona con el identificador: ".$idpersona." ya existe. Inscribiendo solo Alumno.<br>";
+				}else{
+					$sql = "INSERT INTO persona (identificador, tipodoc, documento, nombre, apellido, fechanac, direccion)
+					VALUES ($idpersona, '$tipodoc', $documento, '$nombre', '$apellido', '$fechanac', '$direccion');";
+
+					if (($result=mysqli_query($mysqli,$sql)) === false){
+					  mysqli_close($mysqli);
+						die(mysqli_error($mysqli));
+					}else{
+						echo "Inscripción de persona exitosa.<br>";
+					}
 				}
-		  }else{
-				echo "1" . mysqli_error ($mysqli) . "<br>";
-				mysqli_free_result($result);
-
-				$sql = "INSERT INTO persona (identificador, tipodoc, documento, nombre, apellido, fechanac, direccion)
-				VALUES ($idpersona, $tipodoc, $documento, $nombre, $apellido, $fechanac, $direccion)";
-
-			  if ($result=mysqli_query($mysqli,$sql))
-				{
-					echo "2". mysqli_error ($mysqli) . "<br>";
-					mysqli_free_result($result);
-					echo "Inscripción exitosa";
-			  }else{
-					echo "2". mysqli_error ($mysqli) . "<br>";
-			  }
-		  }
+			}else{
+				mysqli_close($mysqli);
+				die(mysqli_error($mysqli));
+			}
 
 			$sql = "SELECT * FROM alumno WHERE identificador = $idalumno";
-			if ($result=mysqli_query($mysqli,$sql))
-			{
-				if(mysqli_num_rows($result)!==0){
-					echo "El alumno con el identificador " . $idpersona . " ya existe. Desea editar?.";
-					mysqli_free_result($result);
-				  mysqli_close($mysqli);
+			if($result=mysqli_query($mysqli, $sql)){
+				if(mysqli_num_rows($result) != 0){
+					echo "El alumno con el identificador: ".$idalumno."ya existe.";
 					die;
-				}
-		  }else{
-				echo "3" . mysqli_error ($mysqli) . "<br>";
-				mysqli_free_result($result);
-				$sql = "INSERT INTO alumno (identificador, idpersona, legajo)
-					VALUES ($idalumno, $idpersona, $legajo)";
-
-				if ($result=mysqli_query($mysqli,$sql))
-				{
-					echo "Inscripción exitosa";
 				}else{
-					echo "4" . mysqli_error ($mysqli) . "<br>";
+					$sql = "INSERT INTO alumno (identificador, idpersona, legajo) VALUES ($idalumno, $idpersona, $legajo)";
+					if (($result=mysqli_query($mysqli,$sql)) === false){
+						echo mysqli_error($mysqli);
+				  }else{
+						echo "Inscripción de alumno exitosa.";
+					}
 				}
-		  }
-			//mysqli_free_result($result);
+			}
+			echo mysqli_error($mysqli);
 		  mysqli_close($mysqli);
 	}
 	?>
