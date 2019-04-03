@@ -1,5 +1,5 @@
 <?php
-	include('../head.php');
+	include __DIR__ . '/../head.php';
 ?>
 <body>
 

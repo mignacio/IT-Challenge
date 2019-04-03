@@ -24,7 +24,7 @@
 </html>
 
 <?php
-  include('../defines.php');
+  include __DIR__ . '/../defines.php';
 
 	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			$legajo = $_POST['legajo'];

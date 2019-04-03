@@ -1,5 +1,5 @@
 <?php
-  include('defines.php');
+  include __DIR__ . 'defines.php';
   $sql = "SHOW COLUMNS FROM $tableName";
   $result = mysqli_query($mysqli, $sql);
 

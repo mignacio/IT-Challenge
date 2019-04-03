@@ -1,5 +1,5 @@
 <?php
-	include('../head.php');
+	include __DIR__ . '/../head.php';
 ?>
 <body>
 
@@ -34,7 +34,7 @@
 </html>
 
 <?php
-  include('../defines.php');
+  include __DIR__ . '/../defines.php';
 
 	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			$idpersona = $_POST['idpersona'];

@@ -1,5 +1,5 @@
 <?php
-	include('../head.php');
+	include __DIR__ . '/../head.php';
 ?>
 <body>
 	<div id="cards" class="cards">
@@ -8,7 +8,7 @@
 			$tableName = 'persona';
 			$primerColumna = 'identificador';
 
-			include("../defines.php");
+			include __DIR__ . "/../defines.php";
 			$sql = "SHOW COLUMNS FROM $tableName";
 			$result = mysqli_query($mysqli, $sql);
 
