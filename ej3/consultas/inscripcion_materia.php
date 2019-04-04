@@ -22,6 +22,11 @@
   include __DIR__ . '/../defines.php';
 
 	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+			if(empty($_POST['legajo'])){
+				die("Ingrese un Legajo");
+			}else if(empty($_POST['idmateria'])){
+				die("Ingrese un Id de materia");
+			}
 			$legajo = $_POST['legajo'];
 			$idmateria = $_POST['idmateria'];
 

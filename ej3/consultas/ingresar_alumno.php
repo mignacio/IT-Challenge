@@ -38,6 +38,11 @@
   include __DIR__ . '/../defines.php';
 
 	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+			foreach ($_POST as $key => $value) {
+				if(empty($_POST[$key])){
+					die("Falta ingresar: " . $key);
+				}
+			}
 			$idpersona = $_POST['idpersona'];
 			$idalumno = $_POST['idalumno'];
 			$tipodoc = $_POST['tipodoc'];

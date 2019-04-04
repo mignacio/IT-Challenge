@@ -5,7 +5,7 @@
 <div class="login-page">
   <div class="form">
 		<a href="../index.php">Menú</a><br><br>
-    <form class="login-form" name="form1" method="POST" action="">
+    <form class="login-form" name="form1" method="GET" action="">
       <input type="text" placeholder="idcurso" name="idcurso" maxlength="20"/><br><br>
 
       <input id="boton" type="submit" name="submit1" value="Ingresar"><br><br>
@@ -18,8 +18,11 @@
 <?php
   include __DIR__ . '/../defines.php';
 
-	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-			$idcurso = $_POST['idcurso'];
+	if ($_SERVER['REQUEST_METHOD'] == 'GET'){
+			if(empty($_GET['idcurso'])){
+				die("Ingrese un número de Id de curso");
+			}
+			$idcurso = $_GET['idcurso'];
 			$sql = "SELECT curso.nombre , carrera.nombre, COUNT(inscripciones_curso.idcurso), curso.cupomaximo, curso.iddocente
 			FROM ((curso
 			INNER JOIN carrera ON curso.idcarrera = carrera.identificador)

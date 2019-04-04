@@ -47,7 +47,7 @@ HAVING COUNT(inscripciones_curso.idcurso) > curso.cupomaximo;
 */
 UPDATE curso
 SET cupomaximo = 10
-WHERE anio = 2018 AND cupomaximo > 5;
+WHERE (anio = 2018 AND cupomaximo < 5);
 
 /*
 --- EJERCICIO 6 -  COMPLEJIDAD ALTA: 
@@ -63,7 +63,7 @@ INSERT INTO persona
 VALUES (7,'DNI', 35583274, 'Ignacio', 'Moya', '1991-01-17');
     
 INSERT INTO alumno
-VALUES (7, 6, 40022);
+VALUES (6, 7, 40022);
 
 /*
 --- EJERCICIO 8 -  COMPLEJIDAD BAJA: 

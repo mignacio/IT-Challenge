@@ -9,6 +9,7 @@ drop TABLE IF exists carrera;
 drop table IF exists alumno;
 drop table IF exists docente;
 drop table IF exists persona;
+drop table IF exists historia_academica;
 
 
 CREATE TABLE persona (
@@ -66,9 +67,8 @@ CREATE TABLE inscripciones_curso(
     fechainscripcion	date NOT NULL
 );
 
-/*
-* Agregado para EJ - 3
-*/
+
+#--Agregado para EJ - 3
 
 ALTER TABLE curso ADD iddocente INTEGER;
 ALTER TABLE curso ADD FOREIGN KEY (iddocente) REFERENCES docente (identificador);
@@ -82,6 +82,7 @@ CREATE TABLE historia_academica(
     nota smallint,
     fecha date
 );
+#-- Fin Agregado para EJ - 3
 
 
 #----- Insert de datos iniciales persona
@@ -132,22 +133,22 @@ CREATE TABLE historia_academica(
 
 
    INSERT INTO curso VALUES
-    (1,1,1,'Análisis matemático', 'Curso sobre el desarrollo avanzado de matemáticas', 5,2018);
+    (1,1,'Análisis matemático', 'Curso sobre el desarrollo avanzado de matemáticas', 5,2018,1);
     
   INSERT INTO curso VALUES
-    (2,1,1,'Diseño de sistemas', 'Curso sobre diseño de componentes de sistemas de software', 3,2018);
+    (2,1,'Diseño de sistemas', 'Curso sobre diseño de componentes de sistemas de software', 3,2018,1);
 
   INSERT INTO curso VALUES
-    (3,1,1,'Java', 'Curso sobre el lenguaje de programación JAVA', 4,2018);
+    (3,1,'Java', 'Curso sobre el lenguaje de programación JAVA', 4,2018,1);
 
   INSERT INTO curso VALUES
-    (4,1,1,'Base de datos-SQL', 'Curso sobre tipos de base de datos y consultas sql', 10,2018);
+    (4,1,'Base de datos-SQL', 'Curso sobre tipos de base de datos y consultas sql', 10,2018,1);
 
   INSERT INTO curso VALUES
-    (5,2,1,'Fisica básica', 'Curso sobre fundamentos base de física', 5,2018);
+    (5,2,'Fisica básica', 'Curso sobre fundamentos base de física', 5,2018,1);
 
   INSERT INTO curso VALUES
-    (6,2,1,'Dibujo', 'Curso sobre dibujo de planos', 10,2018);
+    (6,2,'Dibujo', 'Curso sobre dibujo de planos', 10,2018,1);
     
 
 #----- Insert de datos iniciales inscripciones

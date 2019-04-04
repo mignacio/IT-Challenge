@@ -47,7 +47,7 @@ HAVING COUNT(inscripciones_curso.idcurso) > curso.cupomaximo;
 */
 UPDATE curso
 SET cupomaximo = 10
-WHERE anio = 2018;
+WHERE (anio = 2018 AND cupomaximo < 5);
 
 /*
 --- EJERCICIO 6 -  COMPLEJIDAD ALTA: 

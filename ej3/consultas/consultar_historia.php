@@ -5,7 +5,7 @@
 <div class="login-page">
   <div class="form">
 		<a href="../index.php">Menú</a><br><br>
-    <form class="login-form" name="form1" method="POST" action="">
+    <form class="login-form" name="form1" method="GET" action="">
       <input type="text" placeholder="legajo" name="legajo" maxlength="20"/><br><br>
 
       <input id="boton" type="submit" name="submit1" value="Ingresar"><br><br>
@@ -19,8 +19,12 @@
 	require_once __DIR__ . '/../dibujarFilas.php';
   include __DIR__ . '/../defines.php';
 
-	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-			$legajo = $_POST['legajo'];
+	if ($_SERVER['REQUEST_METHOD'] == 'GET'){			
+			if(empty($_GET['legajo'])){
+				die("Ingrese un legajo");
+			}
+			$legajo = $_GET['legajo'];
+
 			//Muestro Carreras
 			echo "<h1>Carreras:</h1>";
 			$sql = "SELECT carrera.nombre, inscripciones_carrera.fechainscripcion FROM ((carrera
@@ -76,7 +80,7 @@
 					echo "El alumno con el legajo: ".$legajo.". No tiene exámenes rendidos.";
 				}else{
 					echo "<table id='tablaDatos'>";
-					echo "<tr><th>Curso</th><th>id Carrera</th><th>Fecha Inscripcion</th></tr>";
+					echo "<tr><th>Curso</th><th>id Carrera</th></tr>";
 					dibujarFilas($result);
 			    echo "</table>";
 				}

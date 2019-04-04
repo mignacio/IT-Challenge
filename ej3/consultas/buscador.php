@@ -21,11 +21,15 @@
             $legajo = $row['legajo'];
 						$idpersona = $row['idpersona'];
 						$idalumno = $row['identificador'];
-        }
+        }else{
+					echo "No se encuentra al alumno con el legajo: ". $legajo . "<br>";
+					echo '<a href="editar_alumno.php">Volver a Editar</a>';
+					die;
+				}
       }
     }else{
 			header ("Location: editar_alumno.php");
-			die;
+			die("Ingrese Legajo.");
     }
   }
 ?>

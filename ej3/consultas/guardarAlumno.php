@@ -1,6 +1,5 @@
 <?php
-  if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    echo "datos guardados";
+  if ($_SERVER['REQUEST_METHOD'] == 'POST'){    
     if(!empty($_POST['legajo'])){
       $tipodoc = $_POST['tipodoc'];
       $documento = $_POST['documento'];
@@ -26,7 +25,7 @@
       $sql = "UPDATE persona
       SET tipodoc = '$tipodoc', documento = $documento,
       nombre = '$nombre', apellido = '$apellido', fechanac = '$fechanac', direccion = '$direccion'
-      WHERE identificador = $idpersona";      
+      WHERE identificador = $idpersona";
 
       $result=mysqli_query($mysqli,$sql);
       if($result === false){
