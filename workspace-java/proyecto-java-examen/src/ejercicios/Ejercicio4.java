@@ -114,9 +114,10 @@ public class Ejercicio4 {
 	private static List<Integer> unionListas(List<Integer> lista1, List<Integer> lista2) {
 		// TODO: corregir el metodo para que funcione correctamente 
 		
-		//List<Integer> union = null; //Null pointer exception
+		//List<Integer> union = null; //Throws: Null pointer exception
 		List<Integer> union = new ArrayList<Integer>();		
-		
+
+		//agrego los elementos de lista1 a union, sin repetirse
 		for (Integer n: lista1){
 			if (!union.contains(n)) {
 				union.add(n);
@@ -145,18 +146,19 @@ public class Ejercicio4 {
 		List<Integer> nuevaLista2 = new ArrayList<Integer>();
 		List<Integer> resultado = new ArrayList<Integer>();
 		
+		//limpio lista1 de repetidos
 		for (Integer n: lista1){
 			if (!nuevaLista1.contains(n)) {
 				nuevaLista1.add(n);
 			}
 		}
-		
+		//limpio lista2 de repetidos
 		for(Integer n: lista2) {
 			if(!nuevaLista2.contains(n)) {
 				nuevaLista2.add(n);
 			}
 		}
-		
+		//resuelvo la intersección de las listas y guardo en resultado
 		for(Integer m: nuevaLista1) {
 			if(nuevaLista2.contains(m)) {
 				resultado.add(m);

@@ -208,17 +208,17 @@ INSERT INTO historia_academica VALUES
 (4, 1, 1, 'aprobado', 6, CURRENT_DATE);
 
 INSERT INTO historia_academica VALUES
-(4, 1, 1, 'aprobado', 6, CURRENT_DATE);
+(4, 1, 2, 'aprobado', 6, CURRENT_DATE);
 
 INSERT INTO historia_academica VALUES
-(4, 1, 1, 'aprobado', 7, CURRENT_DATE);
+(4, 1, 3, 'aprobado', 7, CURRENT_DATE);
 
 INSERT INTO historia_academica VALUES
-(4, 1, 1, 'aprobado', 9, CURRENT_DATE);
+(4, 1, 4, 'aprobado', 9, CURRENT_DATE);
 
 INSERT INTO historia_academica VALUES
-(4, 5, 2, 'aprobado', 6, CURRENT_DATE);
+(4, 2, 5, 'aprobado', 6, CURRENT_DATE);
 
 INSERT INTO historia_academica VALUES
-(4, 5, 2, 'aprobado', 10, CURRENT_DATE);
+(4, 2, 6, 'aprobado', 10, CURRENT_DATE);
 

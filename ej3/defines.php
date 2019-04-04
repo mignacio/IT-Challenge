@@ -14,11 +14,9 @@ define('DB_USER', 'root');
 define('DB_DATABASE', 'it-challenge');
 define('DB_PASS', '');
 
-
-
 //$mysqli = mysqli_connect($db_host . ":" . $db_port, $db_user, $db_password, $db_database);
 $mysqli = mysqli_connect(DB_HOST . ":" . DB_PORT, DB_USER, DB_PASS, DB_DATABASE);
 if (mysqli_connect_errno($mysqli)) {
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
-}else{    
+}else{
 }

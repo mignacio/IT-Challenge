@@ -63,6 +63,27 @@
 		  }else{
 		    echo $result->$error;
 		  }
+			echo "<h1> Promedio por Carrera:</h1>";
+			$sql = "SELECT carrera.nombre, AVG(nota) FROM
+			((historia_academica
+			INNER JOIN carrera ON historia_academica.idcarrera = carrera.identificador)
+			INNER JOIN alumno ON historia_academica.idalumno = alumno.identificador)
+			WHERE legajo = $legajo GROUP BY carrera.nombre";
+
+			if ($result=mysqli_query($mysqli,$sql))
+			{
+				if(mysqli_num_rows($result)==0){
+					echo "El alumno con el legajo: ".$legajo.". No tiene exámenes rendidos.";
+				}else{
+					echo "<table id='tablaDatos'>";
+					echo "<tr><th>Curso</th><th>id Carrera</th><th>Fecha Inscripcion</th></tr>";
+					dibujarFilas($result);
+			    echo "</table>";
+				}
+		  }else{
+		    echo $result->$error;
+		  }
+
 			mysqli_free_result($result);
 		  mysqli_close($mysqli);
 	}
