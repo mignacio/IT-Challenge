@@ -3,7 +3,7 @@
 ?>
 <body>
 
-<div class="login-page">
+<div>
   <div class="form">
 		<a href="../index.php">Menú</a><br><br>
     <form class="login-form" name="form1" method="POST" action="">

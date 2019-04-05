@@ -3,7 +3,7 @@
 ?>
 <body>
 
-<div class="login-page">
+<div>
   <div class="form">
 		<a href="../index.php">Menú</a><br><br>
     <form class="login-form" name="form1" method="POST" action="inscripcion_materia.php">
@@ -45,7 +45,7 @@
 					$idalumno = $row[0];
 				}
 		  }else{
-		    echo $result->$error;
+		    echo mysqli_error($mysqli);
 		  }
 
 			$sql = "SELECT identificador FROM curso WHERE identificador = $idmateria";
@@ -77,7 +77,7 @@
 			{
 				echo "Inscripción exitosa";
 		  }else{
-		    echo $result->$error;
+		    echo mysqli_error($mysqli);
 		  }
 			mysqli_close($mysqli);
 	}

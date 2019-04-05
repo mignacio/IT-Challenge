@@ -1,42 +1,49 @@
 <?php
-  if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    echo "datos guardados";
+  if ($_SERVER['REQUEST_METHOD'] == 'POST'){    
     if(!empty($_POST['legajo'])){
-    }
-    /*
-    $tipodoc = $row['tipodoc'];
-    $documento = $row['documento'];
-    $nombre = $row['nombre'];
-    $apellido = $row['apellido'];
-    $fechanac = $row['fechanac'];
-    $direccion = $row['direccion'];
-    $legajo = $row['legajo'];
+      $tipodoc = $_POST['tipodoc'];
+      $documento = $_POST['documento'];
+      $nombre = $_POST['nombre'];
+      $apellido = $_POST['apellido'];
+      $fechanac = $_POST['fechanac'];
+      $direccion = $_POST['direccion'];
+      $legajo = $_POST['legajo'];
+      $idpersona = $_POST['idpersona'];
+      $idalumno = $_POST['idalumno'];
 
-    $sql = "UPDATE alumno
-    SET legajo = $legajo
-    WHERE CustomerID = 1";
+      $sql = "UPDATE alumno
+      SET legajo = $legajo
+      WHERE  identificador = $idalumno";
 
       include __DIR__ . "/../defines.php";
-      if($result=mysqli_query($mysqli,$sql)){
-        if(mysqli_num_rows($result) !== 0){
-            $row=mysqli_fetch_assoc($result);
-            $tipodoc = $row['tipodoc'];
-            $documento = $row['documento'];
-            $nombre = $row['nombre'];
-            $apellido = $row['apellido'];
-            $fechanac = $row['fechanac'];
-            $direccion = $row['direccion'];
-            $legajo = $row['legajo'];
-
-            include __DIR__ . '/buscador.php';
-        }
+      $result=mysqli_query($mysqli,$sql);
+      if($result === false){
+            echo '<a href="../index.php.php">Volver a Menu</a><br>';
+            die(mysqli_error($mysqli));
       }
 
-  }else{
-    echo "Por favor ingrese un legajo existente.";
-    */
-  }else{
+      $sql = "UPDATE persona
+      SET tipodoc = '$tipodoc', documento = $documento,
+      nombre = '$nombre', apellido = '$apellido', fechanac = '$fechanac', direccion = '$direccion'
+      WHERE identificador = $idpersona";
 
+      $result=mysqli_query($mysqli,$sql);
+      if($result === false){
+            die(mysqli_error($mysqli));
+      }else{
+        echo "Datos Guardados<br>";
+        echo '<a href="../index.php">Volver a Menu</a>';
+        die;
+      }
+
+    }else{
+      echo '<a href="editar_alumno.php">Volver a Buscar</a><br>';
+      echo "Por favor ingrese legajo.";
+      die;
+    }
+
+  }else{
+    header ("Location: editar_alumno.php");
+    die;
   }
-
 ?>

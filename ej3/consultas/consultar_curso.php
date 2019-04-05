@@ -2,7 +2,7 @@
 	include __DIR__ . '/../head.php';
 ?>
 <body>
-<div class="login-page">
+<div>
   <div class="form">
 		<a href="../index.php">Menú</a><br><br>
     <form class="login-form" name="form1" method="GET" action="">
@@ -48,7 +48,7 @@
 			    echo "</table>";
 				}
 		  }else{
-		    echo $result->$error;
+		    echo mysqli_error($mysqli);
 		  }
 			mysqli_free_result($result);
 		  mysqli_close($mysqli);

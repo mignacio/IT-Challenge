@@ -2,9 +2,10 @@
 	include __DIR__ . '/../head.php';
 ?>
 <body>
-	<div id="cards" class="cards">
+	<div>
 		<a href="../index.php">Menú</a><br>
 		<?php
+			require_once __DIR__ . '/../dibujarFilas.php';
 			$tableName = 'carrera';
 			$primerColumna = 'identificador';
 
@@ -26,18 +27,10 @@
 
 			if ($result=mysqli_query($mysqli,$sql))
 			{
-				while ($row=mysqli_fetch_row($result))
-				{
-					echo "<tr>";
-					foreach($row as $key => $value){
-						echo "<td>$value</td>";
-					}
-					echo "</tr>";
-				}
-				// Free result set
+				dibujarFilas($result);				
 				mysqli_free_result($result);
 			}else{
-				echo $result->$error;
+				echo mysqli_error($mysqli);
 			}
 			echo "</table>";
 			mysqli_close($mysqli);

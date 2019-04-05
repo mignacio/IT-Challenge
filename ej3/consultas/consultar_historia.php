@@ -2,7 +2,7 @@
 	include __DIR__ . '/../head.php';
 ?>
 <body>
-<div class="login-page">
+<div>
   <div class="form">
 		<a href="../index.php">Menú</a><br><br>
     <form class="login-form" name="form1" method="GET" action="">
@@ -19,7 +19,7 @@
 	require_once __DIR__ . '/../dibujarFilas.php';
   include __DIR__ . '/../defines.php';
 
-	if ($_SERVER['REQUEST_METHOD'] == 'GET'){			
+	if ($_SERVER['REQUEST_METHOD'] == 'GET'){
 			if(empty($_GET['legajo'])){
 				die("Ingrese un legajo");
 			}
@@ -44,7 +44,7 @@
 				}
 				mysqli_free_result($result);
 		  }else{
-		    echo $result->$error;
+		    echo mysqli_error($mysqli);
 		  }
 
 			//Muestro Cursos
@@ -65,7 +65,7 @@
 			    echo "</table>";
 				}
 		  }else{
-		    echo $result->$error;
+		    echo mysqli_error($mysqli);
 		  }
 			echo "<h1> Promedio por Carrera:</h1>";
 			$sql = "SELECT carrera.nombre, AVG(nota) FROM
@@ -85,7 +85,7 @@
 			    echo "</table>";
 				}
 		  }else{
-		    echo $result->$error;
+		    echo mysqli_error($mysqli);
 		  }
 
 			mysqli_free_result($result);

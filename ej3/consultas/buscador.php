@@ -39,10 +39,10 @@
 ?>
 <body>
 
-<div class="login-page">
+<div>
   <div class="form">
 		<a href="editar_alumno.php">Volver a Editar</a><br><br>
-		<form class="login-form" name="form2" method="POST" action="guardarAlumno.php">
+		<form class="login-form" name="form2" method="POST" action="guardar_alumno.php">
 
 		  <input type="text" value="<?php echo $tipodoc; ?>" name="tipodoc" maxlength="5"/><br><br>
 

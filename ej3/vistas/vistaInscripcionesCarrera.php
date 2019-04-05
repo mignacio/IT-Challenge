@@ -2,7 +2,7 @@
 	include __DIR__ . '/../head.php';
 ?>
 <body>
-	<div id="cards" class="cards">
+	<div>
 		<a href="../index.php">Menú</a><br>
 		<?php
 			$tableName = 'inscripciones_carrera';
@@ -37,7 +37,7 @@
 				// Free result set
 				mysqli_free_result($result);
 			}else{
-				echo $result->$error;
+				echo mysqli_error($mysqli);
 			}
 			echo "</table>";
 			mysqli_close($mysqli);
