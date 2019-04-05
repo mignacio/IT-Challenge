@@ -54,11 +54,19 @@ WHERE (anio = 2018 AND cupomaximo < 5);
 -- actualizar todas las fechas de inscripcion a cursados que posean el siguiente error: la fecha de inscripcion al cursado de un 
 -- alumno es menor a la fecha de inscripcion a la carrera. La nueva fecha que debe tener es la fecha del dia. Se puede hacer en dos pasos, primero
 -- realizando la consulta y luego realizando el update manual
--- SELECT FROM inscripciones_curso.fechainscripcion, inscripciones_carrera.fechainscripcion FROM (inscripciones_curso INNER JOIN inscripciones_carrera ON inscripciones_curso.idalumno = inscripciones_carrera.idalumno);
+*/
+SELECT inscripciones_curso.idalumno, inscripciones_curso.idcurso inscripciones_curso.fechainscripcion, inscripciones_carrera.fechainscripcion
+FROM (inscripciones_curso INNER JOIN inscripciones_carrera ON inscripciones_curso.idalumno = inscripciones_carrera.idalumno)
+WHERE inscripciones_curso.fechainscripcion < inscripciones_carrera.fechainscripcion;
+
+UPDATE inscripciones_curso
+SET fechainscripcion = CURRENT_DATE
+WHERE (idalumno = 2 AND idcurso = 3);
+
 
 --- EJERCICIO 7 - COMPLEJIDAD BAJA:  
 --INSERTAR un nuevo registro de alumno con tus datos personales, (hacer todos inserts que considera necesario)
-*/
+
 INSERT INTO persona
 VALUES (6,'DNI', 35583274, 'Ignacio', 'Moya', '1991-01-17');
     
